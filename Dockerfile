@@ -21,7 +21,7 @@ RUN apt-get update && apt-get install -y \
 
 # adding custom MS repository
 RUN curl https://packages.microsoft.com/keys/microsoft.asc | apt-key add -
-RUN curl https://packages.microsoft.com/config/debian/9/prod.list > /etc/apt/sources.list.d/mssql-release.list
+RUN curl https://packages.microsoft.com/config/debian/10/prod.list > /etc/apt/sources.list.d/mssql-release.list
 
 
 # install SQL Server drivers and tools
@@ -40,11 +40,11 @@ RUN apt-get update && apt-get install -y locales && rm -rf /var/lib/apt/lists/* 
     && wget -O /etc/apt/trusted.gpg.d/php.gpg https://packages.sury.org/php/apt.gpg \
     && echo "deb https://packages.sury.org/php/ $(lsb_release -sc) main" | tee /etc/apt/sources.list.d/php7.3.list \
     && apt-get update -y \
-    && apt -y install php7.3 \
-    && apt install php7.3-cli php7.3-fpm php7.3-json php7.3-pdo php7.3-mysql php7.3-zip php7.3-gd  php7.3-mbstring php7.3-curl php7.3-xml php7.3-bcmath php7.3-json -y php-memcached \
-    && apt-get install nano htop curl openssh-client mysql-client git pandoc lynx ffmpeg -y \
-    && curl -sS https://getcomposer.org/installer | php \
-    && mv composer.phar /usr/local/bin/composer \
+#     && apt -y install php7.3 \
+#     && apt install php7.3-cli php7.3-fpm php7.3-json php7.3-pdo php7.3-mysql php7.3-zip php7.3-gd  php7.3-mbstring php7.3-curl php7.3-xml php7.3-bcmath php7.3-json -y php-memcached \
+#     && apt-get install nano htop curl openssh-client mysql-client git pandoc lynx ffmpeg -y \
+#     && curl -sS https://getcomposer.org/installer | php \
+#     && mv composer.phar /usr/local/bin/composer \
     && rm -rf /var/lib/apt/lists/* \
     && export PATH="$PATH:/xtlabscripts/:/opt/mssql-tools/bin"
 RUN apt update -y
