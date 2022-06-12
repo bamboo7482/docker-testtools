@@ -48,7 +48,14 @@ RUN apt-get update && apt-get install -y locales && rm -rf /var/lib/apt/lists/* 
     && rm -rf /var/lib/apt/lists/* \
     && export PATH="$PATH:/xtlabscripts/:/opt/mssql-tools/bin"
 RUN apt update -y
-RUN apt-get install dnsutils -y
+RUN apt-get install dnsutils telnet -y
+
+# Install PostgreSQL-Client
+RUN echo 'deb http://apt.postgresql.org/pub/repos/apt/ stretch-pgdg main' >  /etc/apt/sources.list.d/pgdg.list \
+    && wget --quiet -O - https://www.postgresql.org/media/keys/ACCC4CF8.asc | apt-key add - \
+    && apt-get update \
+    && yes Y | apt-get install postgresql-client-10
+
 
 
 # Add RClone (instal curl if not exist)
